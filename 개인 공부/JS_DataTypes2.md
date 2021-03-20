@@ -22,6 +22,7 @@ date: 2021-03-19
 ---
 
 ## null 타입 
+
 - `null 타입`의 값은 null 밖에 없다. 
 - 유의할 점: 자바스크립트는 대소문자를 구별하기 때문에 `null`은 'Null' 또는 'NULL'등과 다르다는 사실을 유의하자. 
 - 프로그래밍 언어에서 null 은 변수에 '의도적으로 값이 없음'을 명시하기 위한 기본 데이터 타입이다. 이렇게 프로그래밍 언어에서 null이란 값으로 변수에 값이 없다는 것을 의도적으로 명시하는 것을 `의도적 부재(intentional absence)`라고 한다. 
@@ -60,25 +61,25 @@ date: 2021-03-19
 	1. Object 생성자 함수
 		👉 내장 Object() 생성자 함수를 이용해서 객체를 생성할 수 있다
 ```javascript
-			var Person = new Object();
+	var Person = new Object();
 
-			Person.name = 'Choi'; 
-			Person.age = 21;
-			Person.gender = 'female';  
+	Person.name = 'Choi'; 
+	Person.age = 21;
+	Person.gender = 'female';  
 
-			> Person    // Object { name: "Choi", age: 21, gender: "female" }
+	> Person    // Object { name: "Choi", age: 21, gender: "female" }
 ```
 	2. 객체 리터럴 방식 
 		👉 리터럴(cf. 표기법) {} 를 이용해 객체를 생성하는 방법. 
 ```javascript
-			var Human = {
-				
-				name: 'Lee',
-				age: 20,
-				gender: 'male'
-			};
+	var Human = {
+		
+		name: 'Lee',
+		age: 20,
+		gender: 'male'
+	};
 
-			> Human     // Object { name: "Lee", age: 20, gender: "male" }
+	> Human     // Object { name: "Lee", age: 20, gender: "male" }
 ```
 
 ---
