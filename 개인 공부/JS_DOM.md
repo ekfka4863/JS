@@ -33,25 +33,25 @@ date: 2021-03-25-Thursday
 
 - 문서 객체를 조작할 때 `DOMContentLoaded` 이벤트를 사용할 수 있는데, DOMContentLoaded 이벤트는 **웹 브라우저가 문서 객체를 모두 읽고 나서 실행하는 이벤트다.** 그래서 아래와 같이 코드를 구성하면 문서를 전체 다 읽었을 때 콜백함수를 호출하게 된다. 
 ```javascript
-		<!DOCTYPE html> 
-		<html>
-			<head>
-				<title>DOMContentLoaded</title> 
-				<script>
-					 <!-- DOMContentLoaded 이벤트를 연결 -->
-					document.addEventListener('DOMContentLoaded’, () => {
-						const $hl = (text) => `<hl〉${text}</hl〉`
-					<!-- 해당 문서의 문서 객체를 모두 읽어들이면 그 후에 () => {콜백함수}가 실행이된다는 점! 	
-					그래서 이렇게 DOMContentLoaded 이벤트를 활용하면 script 태그가 body 태그 이전에 위치해도 
-					문제없이 코드가 실행된다.  -->
-						document.body.innerHTML += $hl('DOMContentLoaded 이벤트 발생!!!')
-					})
-				</script>
-			</head>
-			<body> 
+	<!DOCTYPE html> 
+	<html>
+		<head>
+			<title>DOMContentLoaded</title> 
+			<script>
+					<!-- DOMContentLoaded 이벤트를 연결 -->
+				document.addEventListener('DOMContentLoaded’, () => {
+					const $hl = (text) => `<hl〉${text}</hl〉`
+				<!-- 해당 문서의 문서 객체를 모두 읽어들이면 그 후에 () => {콜백함수}가 실행이된다는 점! 	
+				그래서 이렇게 DOMContentLoaded 이벤트를 활용하면 script 태그가 body 태그 이전에 위치해도 
+				문제없이 코드가 실행된다.  -->
+					document.body.innerHTML += $hl('DOMContentLoaded 이벤트 발생!!!')
+				})
+			</script>
+		</head>
+		<body> 
 
-			</body> 
-		</html>
+		</body> 
+	</html>
 ```
 - 그래서 다시 정리하자면... <br> DOMContentLoaded 이벤트를 사용하는 이유는:
 	- 로딩이 다 된 후에 자바스크립트 동작이 이뤄지는 것이 일반적이지만, DOM 로딩이 완료되지 않았는데 DOM을 조작하는 자바스크립트 코드가 실행된다면 기대하던대로 렌더링이 되지 못 할것이다. DOMContentLoaded 이벤트는 DOM Tree 분석이 끝나면 발생되기 때문에, 앞서 언급한 원치않는 불상사를 막을 수 있다. 
