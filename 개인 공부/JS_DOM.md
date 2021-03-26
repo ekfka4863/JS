@@ -210,9 +210,9 @@ function getTextContent() {
 - 문서 객체를 제거할 때는 `부모 객체.removeChild(자식 객체)` 메소드를 사용한다. 
 - appendChild() 메소드 등으로 부모 객체와 이미 연결이 끝난 문서 객체의 경우 parentNode 속성으로 부모 객체에 접급할 수 있다. 
 <br> 아래와 같이;
-```javascript
-	문서 객체.parentNode.removeChild(문서 객체)
-```
+	```javascript
+		문서 객체.parentNode.removeChild(문서 객체)
+	```
 - 그럼 예제를 통해 어떻게 코드 상에서 특정 개체를 제거할 수 있는지를 알아보자. 
 <br> 아래 코드는 h1 이라는 특정 객체를 실행한 뒤 3(3000ms)초 우에 화면에서 h1 태그를 제거하는 코드이다;
 	```javascript
@@ -238,10 +238,10 @@ function getTextContent() {
 ## 이벤트 설정하기 
 - 지금까지 반복하여 사용한 `document.addEvenyListener('DOMContentLoaded', () => {})`라는 형태의 코드는 해석하면, document라는 문서 객체의 DOMContentLoaded라는 이벤트가 발생하면 매개변수로 지정한 콜백 함수를 실행해줘! 라는 의미이다.
 - 브라우저는 모든 문서 객체가 클릭되거나 마우스가 호버되거나 할 때를 감지하여 이런 이벤트가 발생했을 때, 등록된 이벤트 핸들러를 호출한다. 쉽게 말하자면, 이벤트가 발생하면 브라우저가 이를 감지하고 그에 맞는 함수를 호출하여 반응한다는 말이다. 그리고 그때 실행할 함수(이벤트 핸들러)는 `addEventListener()`메소드를 사용하는 것이 가장 바람직하다. 
-```javascript
+	```javascript
 		문서 객체.addEvenyListener(이벤트 이름(타입), 콜백함수)     
 		// 여기서 콜백 함수가 바로 이벤트 리스너 또는 이벤트 핸들러라는 아이!
-```
+	```
 - 아래의 코드는 addEvenyListener() 메소드를 사용해서 h1 태그를 클릭할 때 이벤트 리스터(콜백 함수)를 호출하는 예시이다. 
 	```javascript
 		<script>
