@@ -28,8 +28,9 @@ date: 2021-03-25-Thursday
 	document.addEventListener('DOMContentLoaded', () => {
 		// 실행할 문장 
 	})
-```
-	- 위의 예시에서 사용된 `.addEventListener('DOMContentLoaded', () => {})`는 앞으로도 자주 보게될텐데, 해석을 하자면, document 라는 문서 객체에 DOMContentLoaded(브라우저에서 문서가 열렸고, 그 문서안에 있는 모든 HTML 요소를 읽어드린다) 라는 이벤트가 발생했을 때, 두 번째 매개변수로 지정한 `콜백 함수(Callback Function)`를 샐행하라는 의미이다. 
+```	
+- 위의 예시에서 사용된 `.addEventListener('DOMContentLoaded', () => {})`는 앞으로도 자주 보게될텐데, 해석을 하자면, document 라는 문서 객체에 DOMContentLoaded(브라우저에서 문서가 열렸고, 그 문서안에 있는 모든 HTML 요소를 읽어드린다) 라는 이벤트가 발생했을 때, 두 번째 매개변수로 지정한 `콜백 함수(Callback Function)`를 샐행하라는 의미이다. 
+
 - 문서 객체를 조작할 때 `DOMContentLoaded` 이벤트를 사용할 수 있는데, DOMContentLoaded 이벤트는 **웹 브라우저가 문서 객체를 모두 읽고 나서 실행하는 이벤트다.** 그래서 아래와 같이 코드를 구성하면 문서를 전체 다 읽었을 때 콜백함수를 호출하게 된다. 
 ```javascript
 		<!DOCTYPE html> 
@@ -124,13 +125,19 @@ function getTextContent() {
 
 <br>
 
+>> innerHTML
+
 ![innerHTML](./images/innerHTML.png)
 
 ---
 
+>> innerText
+
 ![innerText](./images/innerText.png)
 
 ---
+
+>> textContent
 
 ![textContent](./images/textContent.png)
 
