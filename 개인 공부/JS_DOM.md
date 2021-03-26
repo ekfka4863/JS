@@ -40,11 +40,11 @@ date: 2021-03-25-Thursday
 			<script>
 					<!-- DOMContentLoaded 이벤트를 연결 -->
 				document.addEventListener('DOMContentLoaded’, () => {
-					const $hl = (text) => `<hl〉${text}</hl〉`
+					const $h1 = (text) => `<h1〉${text}</h1〉`
 				<!-- 해당 문서의 문서 객체를 모두 읽어들이면 그 후에 () => {콜백함수}가 실행이된다는 점! 	
 				그래서 이렇게 DOMContentLoaded 이벤트를 활용하면 script 태그가 body 태그 이전에 위치해도 
 				문제없이 코드가 실행된다.  -->
-					document.body.innerHTML += $hl('DOMContentLoaded 이벤트 발생!!!')
+					document.body.innerHTML += $h1('DOMContentLoaded 이벤트 발생!!!')
 				})
 			</script>
 		</head>
@@ -61,18 +61,18 @@ date: 2021-03-25-Thursday
 ## 문서 객체 가져오기 (문서 객체에 접근하기)
 - DOMContentLoaded 이벤트를 왜 사용해야 하는지 알았으니, 이제 문서 객체를 어떻게 가져오는지(그 HTML 요소에 어떻게 접근할지) 알아보자! 
 - 기본적으로 우리가 가져올 문서 객체란 문서에 존재한다. 그래서 우리는 해당 문서 객체에 접근하려면 그 문서 객체를 담고 있는 document에 접근해야한다. 
-```javascript
-// 기본적으로 HTML 문서에 있는 요소에 아래와 같은 방법으로 읽어들일 수 있다 
-	document.head 
-	document.body 
-	document.title 
+	```javascript
+	// 기본적으로 HTML 문서에 있는 요소에 아래와 같은 방법으로 읽어들일 수 있다 
+		document.head 
+		document.body 
+		document.title 
 
-// 위의 태그들은 HTML 문서에 당연히 있다고 전제하는 태그들이다.
-// 우리가 head 요소나 body 요소 내부에 있는 다른 요소들에 접근하고 싶을 때는 다음과 같은 별도의 메소드가 필요하다 
-	document.querySelector(선택자)
-	document.querySelectorAll(선택자)
-// 위의 (선택자) 부분에는 #아이디, .클래스, [속성 = 값], 선택자_A 선택자_B 와 같은 CSS 선택자를 입력할 수 있다.
-```
+	// 위의 태그들은 HTML 문서에 당연히 있다고 전제하는 태그들이다.
+	// 우리가 head 요소나 body 요소 내부에 있는 다른 요소들에 접근하고 싶을 때는 다음과 같은 별도의 메소드가 필요하다 
+		document.querySelector(선택자)
+		document.querySelectorAll(선택자)
+	// 위의 (선택자) 부분에는 #아이디, .클래스, [속성 = 값], 선택자_A 선택자_B 와 같은 CSS 선택자를 입력할 수 있다.
+	```
 - document 객체가 가지는 메서드를 사용하여 '이미 HTML 문서상에 이미 존재하는 문서 객체'를 가져올 수 있다. 기본적으로 문서 객체를 가져오기 위해 알아야 할 메서드들은 아래와 같다: 
 	| 메서드 | 설명 |
 	|:---:|:---:|
@@ -157,13 +157,13 @@ function getTextContent() {
 
 ## 스타일 조작하기 
 - 문서 객체의 CSS 스타일을 조작할 때는 `style` 속성을 사용한다. style 속성은 객체이며, 내부에는 속성으로 CSS를 사용해서 지정할 수 있는 스타일들이 있다. 속성들은 CSS로 입력할 때 사용하는 것처럼 적으면 된다. 다만, CSS에서는 케밥케이스로 이름을 적는다면, 자바스크립트에서는 두 단어 이상의 속성은 아래와 같이 캐멀 케이스로 나타낸다. 
-```javascript
+	```javascript
 	// 캐멀 케이스: 케밥 케이스의 -를 제거하고 기호 뒤의 알파벳을 대문자로 변경
 	h1.style.backgroundColor = 'red';
 
 	// 또는 대괄호 안에 속성으로 적어줘도 상관 없음!
 	h1.style['background-color'] = 'red';
-```
+	```
 ---
 
 ## 문서 객체 생성하기 
@@ -172,7 +172,7 @@ function getTextContent() {
 이때 알아야 할 개염이 바로 `트리 구조`라고 한다. 트리 자료 구조는 `부모(parent)-자식(child) 간의 관계성`을 잘 나타내준다. 
 - 그래서 문서는 위에서 언급한 문서 객체들이 트리를 이루고 있기 때문에, 이러한 부모 -와 자식 객체 간의 관계를 활용하여 'document.createElement(문서 객체 이름)' 메소드와 `부모 객체.appendChild(자식 객체)` 메소드를 활용하여 문서 객체를 생성하고 배치하는 것까지 할 수 있다. <br>
 예제를 통해 살펴보자;
-```javascript
+	```javascript
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
 
@@ -193,7 +193,7 @@ function getTextContent() {
 
 	</body>
 	</script>
-```
+	```
 위의 코드에서는 document.createElement() 메소드로 h1 태그를 생성하고, 이를 document.body 태그 아래에 추가하는 코드이다. 
 <br> 코드를 실행하면 h1 태그를 출력한다.
 
@@ -215,7 +215,7 @@ function getTextContent() {
 ```
 - 그럼 예제를 통해 어떻게 코드 상에서 특정 개체를 제거할 수 있는지를 알아보자. 
 <br> 아래 코드는 h1 이라는 특정 객체를 실행한 뒤 3(3000ms)초 우에 화면에서 h1 태그를 제거하는 코드이다;
-```javascript
+	```javascript
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
 			setTimeOut(() => {
@@ -228,11 +228,9 @@ function getTextContent() {
 	</script>
 
 	<body>
-		<hr>
 		<h1>제거 대상 문서 객체</h1>
-		<hr>
 	</body>
-```
+	```
 위의 코드를 실행하면 처음에는 h1 태그 안에 적힌대로 '제거 대상 문서 객체'라고 뜨지만, 3초가 지나면 h1 태그와 해당 요소 안에 텍스트는 사라진다. 
 
 ---
@@ -245,7 +243,7 @@ function getTextContent() {
 		// 여기서 콜백 함수가 바로 이벤트 리스너 또는 이벤트 핸들러라는 아이!
 ```
 - 아래의 코드는 addEvenyListener() 메소드를 사용해서 h1 태그를 클릭할 때 이벤트 리스터(콜백 함수)를 호출하는 예시이다. 
-```javascript
+	```javascript
 		<script>
 			document.addEventListener('DOMContentLoaded', () => {
 				let counter = 0;
@@ -267,7 +265,7 @@ function getTextContent() {
 		<body>
 			<h1>클릭 횟수: 0</h1>
 		</body>
-```
+	```
 - 위의 이벤트를 제거하고 싶을 때는 아래와 같은 형태로 `removeEventListener()` 메소드를 사용하면 된다; 
 ```javascript
 		문서 객체.removeEventListener(이벤트 이름(타입), 이벤트 리스너)     
@@ -275,7 +273,7 @@ function getTextContent() {
 		// 팁: 이벤트 핸들러(함수)를 미리 만들고, 그걸 변수 또는 상수에 이벤트 핸들러를 넣어놓는다. 그리고 이벤트 연결과 연결 제거에 활용한다.
 ```
 - 이벤트 연결을 제거하는 코드는 아래와 같다;
-```javascript
+	```javascript
 		<script>
 			document.addEventListener('DOMContentLoaded', () => {
 				let counter = 0
@@ -320,7 +318,7 @@ function getTextContent() {
 			<button id="disconnect">이벤트 제거</button>
 			<p>이벤트 연결 상태: 해제</p>
 		</body>
-```
+	```
 위의 코드를 실행하고 버튼을 클릭하면 연결 상태는 '연결'로 나오고, 다시 클릭하면 연결 상태는 '해제'로 나온다. 
 
 --- 
