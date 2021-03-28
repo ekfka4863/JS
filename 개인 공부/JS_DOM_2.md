@@ -1,5 +1,5 @@
 ---
-date: 2021-03-26-Friday
+date: 2021-03-27-Saturday
 ---
 
 # 문서 객체 모델(DOM) - 2 
@@ -21,67 +21,72 @@ date: 2021-03-26-Friday
 - 이전 시간에 살펴본 `addEventListener()` 메소드도 
 이벤트 모델이다.
 ```javascript 
-	document.body.addEventListener('keyup', () => {
+document.body.addEventListener('keyup', () => {
 
-	})
+})
 ``` 
+	
 	아래와 같이 이벤트를 연결시키는 방법은 W3C이 공식으로 지정한 이벤트 모델로 현재 표준으로 사용하고 있는 방법이므로 `표준 이벤트 모델`이라고 부른다. 
+
 ```html	 
-	<!DOCTYPE html>
-	<html lang="ko">
-		<head>
-			<script>
-				window.onload = function() {
-					// 변수 선언 
-					var header = document.getElementById('header');
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<script>
+			window.onload = function() {
+				// 변수 선언 
+				var header = document.getElementById('header'b                                                                                                                          n7 f);
 
-					// 이벤트 연결 --> 표준 이벤트 모델 
-					header.onclick = function() {
-						alert('Click!');
+				// 이벤트 연결 --> 표준 이벤트 모델 
+				header.onclick = function() {
+					alert('Click!');
 
-						// 이벤트 제거 
-						header.onclick = null;
-					};
-				}
-			</script>
-		</head>
+					// 이벤트 제거 
+					header.onclick = null;
+				};
+			}
+		</script>
+	</head>
 
-		<body> 
-			<h1 id="header">Click Me!</h1>  	
-		</body>
-	</html>	
+	<body> 
+		<h1 id="header">Click Me!</h1>  	
+	</body>
+</html>	
 ```
 - 과거에는 현재 사용되고 있는 '표준 이벤트 모델'과는 다르게 'on'을 접두사로 갖고있는 속성에 함수를 할당해서 이벤트를 연결하고는 했다. ~~아래와 같이;~~ <br>
 이와 같은 이벤트 연결 방법을 `고전(기본) 이벤트 모델`이라고 부른다. 
 ```javascript	 
-	document.body.onkeyup(event) => {
+document.body.onkeyup(event) => {
 
-	}
+}
 ``` 
 - 그리고 고전 이벤트 모델처럼 'on'이라는 접두사로 시작하는 속성을 HTML 요소에 직접 넣어서 이벤트를 연결하는 것을 `인라인 이벤트 모델`이라고 부른다. <br>
 ~~아래가 HTML 문서라고 하면...~~ 
 ```html	 
-	<!DOCTYPE html>
-	<html lang="ko">
-		<head>
-			<script>
-				const listener = (event) => {
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<script>
+			const listener = (event) => {
 
-				}
-			</script>
-		</head>
+			}
+		</script>
+	</head>
 
-		<!-- 인라인 방식으로 HTML 요소에 on으로 시작하는 속성을 직접 태그 안에 넣어서 이벤트를 연결 한다. -->
-		<body onkeyup="listener(event)">   	
-		</body>
-	</html>	
+	<!-- 인라인 방식으로 HTML 요소에 on으로 시작하는 속성을
+		직접 태그 안에 넣어서 이벤트를 연결 한다. -->
+	<body onkeyup="listener(event)">   	
+	</body>
+</html>	
 ```
+
 	다시 말해, 위와 같은 인라인 이벤트 모델(이벤트 연결 방법)을 사용하는 것은 곧 HTML 요소(태그)에 직접 'on'으로 시작하는 이벤트 프로퍼티와 이벤트 핸들러를 넣어주어 이벤트를 해당 HTML 요소와 연결시켜 주는 이벤트 모델(이벤트 연결 방식)이다. 
+
 ~~위의 코드에서는 현재 'listener()'이라는 함수(이벤트 핸들러)를 호출하고 있으며, 이때 'onkeyup="listener(event)"'라고 이벤트를 연결해주었기 때문에, 'onkeyup' 속성 내부에 있는 변수 event는 listener() 함수에서 매개변수로 전달되어 활용될 수 있다.~~
+
 - 이때, 등장하는 개념: `이벤트 객체(Event Object)`이다. 
 	- 이벤트가 발생하면 이벤트에 관련된 다양한 정보를 담고 있는 '이벤트 객체'라는 것이 동적으로 ~~(cf. 원래부터 있던 것이 아닌데 새롭게 어떤 이벤트가 발생함으로 인해, 그 기점으로부터 새롭게 생성된다)~~ 생성된다. **모든 이벤트 모델은 그 이벤트 모델에 관계없이 이벤트 리스너(이벤트 핸들러)는 생성된 이벤트 객체를 첫 번째 인수로 전달받는다.**
 - 2.고전 이벤트 모델과 3.인라인 이벤트 모델은 처리할 수 있는 리스너의 갯수가 1개로 제한되지만, 표준 이벤트 모델과 같은 경우 리스너를 다중 처리 할 수 있다는 장점이 있다. 
-
 
 - 웹 브라우저에는 많은 이벤트가 있으므로 모든 이벤트와 이벤트 객체의 속성을 모두 설명하고 공부하는 것은 불가능하지만, 많이 사용되는 이벤트 객체 위주로 활용 방법을 살펴보자.  
 
@@ -103,8 +108,8 @@ date: 2021-03-26-Friday
 <br>
 
 >> 키보드 이벤트 객체 
-- 위에서 `이벤트 객체`라는 개념에 대해 얘기했었다.(cf. _이벤트가 발생하면 이벤트에 관련된 다양한 정보를 담고 있는 '이벤트 객체'라는 것이 동적으로 생성된다. 그리고 모든 이벤트 모델은 그 이벤트 모델에 관계없이 이벤트 리스너(이벤트 핸들러)는 생성된 이벤트 객체를 첫 번째 인수로 전달받는다._라고...)
-- 키보드 이벤트가 발생하면 이를 처리하면서도 이벤트 객체라는 것이 동적으로 생성되는데, 이를 `키보드 이벤트 객체`라고 부르고, 키보드 이벤트 객체에는 눌리거나 놓아진 키에 대한 다양한 메타정보가 담겨있다. <br>
+- 위에서 `이벤트 객체`라는 개념에 대해 얘기했었다.(cf. _이벤트가 발생하면 이벤트에 관련된 다양한 정보를 담고 있는 '이벤트 객체'라는 것이 동적으로 생성된다. 그리고 모든 이벤트 모델은 그 이벤트 모델에 관계없이 이벤트 리스너(이벤트 핸들러)는 생성된 이벤트 객체를 첫 번째 인수로 전달받는다.
+- 예를들어, 키보드 이벤트가 발생하면 이를 처리하면서 이벤트 객체라는 것이 동적으로 생성되는데, 이를 `키보드 이벤트 객체`라고 부르고, 키보드 이벤트 객체에는 눌리거나 놓아진 키에 대한 다양한 메타정보가 담겨있다. <br>
 이제 이 '다양한 메타 정보'가 어떤 형식으로 담겨져 있나 알아보자. 
 
 | 이벤트 속성 이름 (코드값 - 키보드에 관련한 다양한 메타정보) | 설명 |
@@ -114,7 +119,11 @@ date: 2021-03-26-Friday
 | **altKey** |_Alt 키를 눌렀는지_|
 | **ctrlKey** |_Ctrl 키를 눌렀는지_|
 | **shiftKey** |_Shift 키를 눌렀는지_|
+
+<br>
+
 code 속성은 입력한 키를 나타내는 문자열이 들어있고, altKey, CtrlKey, 아liftKey 속성은 해당 키를 눌렀는지 불 자료형 값이 들어있다. 아래와 같이;
+
 ```javascript
 {
 	key: "1",
@@ -139,41 +148,41 @@ code 속성은 입력한 키를 나타내는 문자열이 들어있고, altKey, 
 
 1. event.currentTarget 속성 
 ```html
-	<script>
-		const listener = (event) => {
-			// 여기서 event.currentTarget이 textarea 가 된다
-			const length = event.currenTarget.value.length
-			h1.textContent = `글자 수: ${length}`
-		}
+<script>
+	const listener = (event) => {
+		// 여기서 event.currentTarget이 textarea 가 된다
+		const length = event.currenTarget.value.length
+		h1.textContent = `글자 수: ${length}`
+	}
 
-		document.addEventListener('DOMContentLoaded', () => {
-			const textarea = document.querySelector('textarea')
-			const h1 = document.querySelector('h1')
-			textarea.addEventListener('keyup', listener)
-		})
-	</script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const textarea = document.querySelector('textarea')
+		const h1 = document.querySelector('h1')
+		textarea.addEventListener('keyup', listener)
+	})
+</script>
 
-	<body>
-		<h1></h1>
-		<textarea></textarea>
-	</body>
+<body>
+	<h1></h1>
+	<textarea></textarea>
+</body>
 ```
 
 2. this 키워드 
 ```html
 <script>
-		const listener = function (event) {
-			// 여기서 this가 textarea 가 된다
-			const length = this.value.length
-			h1.textContent = `글자 수: ${length}`
-		}
+	const listener = function (event) {
+		// 여기서 this가 textarea 가 된다
+		const length = this.value.length
+		h1.textContent = `글자 수: ${length}`
+	}
 
-		document.addEventListener('DOMContentLoaded', () => {
-			const textarea = document.querySelector('textarea')
-			const h1 = document.querySelector('h1')
-			textarea.addEventListener('keyup', listener)
-		})
-	</script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const textarea = document.querySelector('textarea')
+		const h1 = document.querySelector('h1')
+		textarea.addEventListener('keyup', listener)
+	})
+</script>
 ```
 
 --- 
@@ -202,11 +211,33 @@ code 속성은 입력한 키를 나타내는 문자열이 들어있고, altKey, 
 - 이런 기본 이벤트를 제거하려면 event 객체의 `preventDefault()` 메소드를 사용한다. 
 	- 이 메소드는 인터넷에서 이미지 `불펌`(cf. 불법+퍼옴의 합성어) `방지` 등을 구현할 때 유용하게 사용되는 코드이므로 기억할 것! 
 	- ~~더 어렵게 얘기하자면... 자바스크립트에서 이벤트 전파를 중단하는 4가지 방법 중 하나가 preventDefault() 메소드! (cf. JS에서 이벤트 리스너에 preventDefault(), stopPropagation(), stopImmediatePropagation(), 그리고 return false는 자바스크립트 프로그래밍을 할 때 이벤트 중단을 위해 자주 사용되는 코드들...)~~
+- <u>**예시**</u>:
+	- 이벤트를 취소할 수 있는 경우, 이벤트의 전파를 막지 않고 그 이벤트를 취소할 때 사용하는 `event.preventdefault()`를 사용해서 체크박스를 클릭할 때 발생하는 동작을 멈추는 방법을 살펴보자: 
+	```html
+	<html>
+		<head>
+		<title>preventDefault 예제</title>
+		<script type="text/javascript">
+			function stopDefAction(evt) {
+				evt.preventDefault();
+			}
+		</script>
+		</head>
 
+		<body>
+			<p>체크박스 컨트롤을 클릭해 주세요</p>
 
-<자바스크립트 preventdefault() 메소드 예시 적을 것!!!!>
-<미완>
-
+			<form>
+			<input type="checkbox" onclick="stopDefAction(event);"/>
+			<label for="checkbox">체크박스</label>
+			</form>
+		</body>
+	</html>
+	```
+	위에서 살펴본 것처럼 이벤트가 발생할 때 event.preventdefault() 메소드를 호출하게 되면, 일반적으로는 브라우저의 구현에 의해 처리되는 기존의 액션이 동작하지 않게되고, 그 결과 이벤트가 발생하지 않게 되는 것이다.
+<br>
+	👉 Tip: 이벤트의 취소가능 여부를 알고싶다면 `event.cancelable()`를 사용하면 확인할 수 있다. <br> 
+	~~(cf. 만약 취소불가능한 이벤트에 대해서 preventDefault()를 호출해도 결과는 없다.)~~
 
 --- 
 cf. 
@@ -223,4 +254,5 @@ https://m.blog.naver.com/PostView.nhn?blogId=pika1411&logNo=220735262058&proxyRe
 https://roseline124.github.io/django/2019/04/10/pickmeal-signupform.html   (회원가입 입력 양식 예시)
 
 https://programmingsummaries.tistory.com/313    (이벤트 전파를 중단하는 4가지 방법)
+
 --- 
